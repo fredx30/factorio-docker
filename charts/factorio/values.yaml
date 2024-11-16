@@ -8,7 +8,7 @@ image:
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "stable"
 
 # This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: [ ]
@@ -43,6 +43,7 @@ podAnnotations: { }
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 podLabels: { }
 
+# 845 matches the defaults for the container documentation.
 podSecurityContext:
   fsGroup: 845
 
@@ -54,10 +55,13 @@ securityContext: { }
 # runAsNonRoot: true
 # runAsUser: 1000
 
+hostNetwork: true
+
 # This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
 service:
+  enabled: true
   # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
-  type: NodePort
+  type: ClusterIP
   # This is the RCON port -
   portTcp: 27015
   # This is required - game traffic is sent over UDP
@@ -90,8 +94,6 @@ volumes:
     #       resources:
     #         requests:
     #           storage: 50Gi
-    #       local:
-    #         path: /home/factorio
     #
     # PVC Sample
     # persistentVolumeClaim:
