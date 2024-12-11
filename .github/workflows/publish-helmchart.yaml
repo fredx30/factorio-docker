@@ -45,6 +45,6 @@ jobs:
 
       - name: Publish Helm chart to GHCR
         run: |
-          helm package charts/factorio
+          helm package charts/factorio --destination factorio-${{ steps.prep.outputs.VERSION }}.tgz
           helm push factorio-${{ steps.prep.outputs.VERSION }}.tgz oci://ghcr.io/fredx30/factorio-docker
           rm factorio-${{ steps.prep.outputs.VERSION }}.tgz
