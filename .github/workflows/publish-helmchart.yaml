@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - '*'
+    branches:
+      - add-helmchart
+
 
 permissions:
   contents: read
